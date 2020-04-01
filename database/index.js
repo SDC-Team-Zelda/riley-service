@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/airbnblisting');
+mongoose.connect('mongodb://localhost/airbnblisting', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true
+});
 
 
 let listingSchema = mongoose.Schema({

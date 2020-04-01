@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "initial description and photo gallery",
   "author": "Caryn Shu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/team-ganon/caryn-service"
+  },
+  "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
   },
@@ -17,6 +22,7 @@
     "@babel/cli": "^7.8.4",
     "aws-sdk": "^2.639.0",
     "babel-loader": "^8.0.6",
+    "body-parser": "^1.19.0",
     "circleci-cli": "0.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "cors": "^2.8.5",
@@ -27,9 +33,12 @@
     "jest": "^25.1.0",
     "jest-css-modules": "^2.1.0",
     "jquery": "^3.4.1",
+    "lodash": "^4.17.15",
+    "minimist": "^1.2.5",
     "mongodb": "^3.5.5",
-    "mongoose": "^5.9.4",
+    "mongoose": "^5.9.7",
     "nodemon": "^2.0.2",
+    "path": "^0.12.7",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-styleable": "^3.3.2",
