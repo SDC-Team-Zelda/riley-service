@@ -1,7 +1,7 @@
 var path = require('path');
 var SRC_DIR = path.join(__dirname, '/client/src');
 var DIST_DIR = path.join(__dirname, 'client/public/dist');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: `./client/src/components/Index.jsx`,
@@ -9,11 +9,6 @@ module.exports = {
     filename: 'app.js',
     path: DIST_DIR
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './client/public/dist/index.html',
-    }),
-  ],
   module : {
     rules : [
       {
