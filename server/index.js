@@ -21,33 +21,66 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/api/intro/:id', function (req, res) {
-  var id = req.params.id;
-  getListing(id, function(err, result) {
-    if (err) {
-      console.log('fail to get intro')
-    } else {
-      res.send(result)
-    }
-  });
-});
 
 app.get('/app.js', cors(), function (req, res) {
   res.sendFile(path.join(__dirname, '../client/public/dist/app.js'))
 });
 
+
+
+app.get('/api/intro/:id', function (req, res) {
+  var id = req.params.id;
+  console.log('GET id: ', id)
+  getListing(id, function(err, result) {
+    if (err) {
+      console.log('Error: GET');
+      res.sendStatus(400);
+    } else {
+      console.log(result);
+      res.send(result);
+    }
+  });
+});
+
 ////////
 
-app.post('/api/', cors(), (req, res) => {
-  console.log('POST', res.body)
+app.post('/api/intro/:id', cors(), (req, res) => {
+  console.log('POST id: ', id)
+  var id = req.params.id;
+  postListing(id, function(err, result) {
+    if (err) {
+      console.log('Error: POST')
+      res.sendStatus(400)
+    } else {
+      res.sendStatus(201)
+    }
+  });
 })
 
-app.put('/api/', cors(), (req, res) => {
+app.put('/api/intro/:id', cors(), (req, res) => {
   console.log('PUT', res.body)
+  var id = req.params.id;
+  putListing(id, function(err, result) {
+    if (err) {
+      console.log('Error: PUT')
+      res.sendStatus(400)
+    } else {
+      res.sendStatus(200)
+    }
+  });
 })
 
-app.delete('/api/', cors(), (req, res) => {
+app.delete('/api/intro/:id', cors(), (req, res) => {
   console.log('DELETE', res.body)
+  var id = req.params.id;
+  deleteListing(id, function(err, result) {
+    if (err) {
+      console.log('Error: DELETE')
+      res.sendStatus(204)
+    } else {
+      res.sendStatus(200)
+    }
+  });
 })
 
 ////////
