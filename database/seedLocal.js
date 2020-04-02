@@ -1,16 +1,14 @@
 const faker = require('faker');
 const fs = require('file-system');
 const axios = require('axios');
-const Promise = require('bluebird')
+const Promise = require('bluebird');
+const mongoose = require('mongoose');
+const db = require('./index.js');
 
-let {Listing} = require('./index.js');
-
+const {Listing} = require('./index.js');
 const ACCESS_KEY = require('./config/unsplash.config.js')
-// const unsplash = new Unsplash(ACCESS_KEY);
 
-let fakeListing = function() {
-
-}
+mongoose.connect('mongodb://localhost/sdcbnb', {useNewUrlParser: true});
 
 let seed = function() {
   console.log('Running seed script')
@@ -45,18 +43,21 @@ let seed = function() {
         }
         return listing;
       })
-
       console.log(listings)
+      return listings;
+
+    })
+    .then((listings) => {
 
     })
     .catch((err) => {
       console.log(err)
     })
-}
+}();
 
 
-let fakeData = seed()
-console.log(fakeData)
+// let fakeData = seed()
+// console.log(fakeData)
 
 
 module.exports = seed;

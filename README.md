@@ -1,39 +1,37 @@
-# Project Name
+# riley-service
 
-> Project description
+## API
 
-## Related Projects
+1. [GET](#get)
+2. [POST](#post)
+3. [UPDATE](#update)
+4. [DELETE](#delete)
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+## GET
 
-## Table of Contents
+/api/intro/:id
 
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
+Makes request for initial application
 
-## Usage
+## POST
 
-> Some usage instructions
+/api/
 
-## Requirements
+Sends request to store new rental listing, using the following schema:
+listing_id: INTEGER (auto-generated)
+title: STRING,
+description: STRING,
+photos: ARRAY of photo urls
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
+## UPDATE
 
-- Node 6.13.0
-- etc
+/api/
 
-## Development
+Updates a single listing based on listing_id
 
-### Installing Dependencies
+## DELETE
 
-From within the root directory:
+/api/
 
-```sh
-npm install -g webpack
-npm install
-```
+Deletes a single listing based on listing_id
 
