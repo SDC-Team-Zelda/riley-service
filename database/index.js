@@ -14,7 +14,6 @@ db.once('open', function() {
 });
 
 let listingSchema = new mongoose.Schema({
-  listing_id: { type: mongoose.ObjectId, unique: true, dropDuos: true},
   photos: Array,
   title: String,
   description: String

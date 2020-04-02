@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const {getListing} = require('../database/index.js');
+const {getListing, postListing, putListing, deleteListing} = require('../database/index.js');
 const cors = require('cors');
 
 let app = express();
@@ -44,15 +44,15 @@ app.get('/api/intro/:id', function (req, res) {
 
 ////////
 
-app.post('/api/intro/:id', cors(), (req, res) => {
-  console.log('POST id: ', id)
-  var id = req.params.id;
-  postListing(id, function(err, result) {
+app.post('/api/intro/', (req, res) => {
+  console.log(req.body)
+  postListing(req.body, function(err, result) {
     if (err) {
       console.log('Error: POST')
       res.sendStatus(400)
     } else {
       res.sendStatus(201)
+      res.end
     }
   });
 })

@@ -19,22 +19,12 @@ class App extends React.Component {
 
   getPhotosAndIntro () {
     let endPoint = window.location.href.split('=')[1];
-    // $.ajax({
-    //   method: 'GET',
-    //   url: `http://localhost:3002/api/intro/${endPoint}`,
-    //   success: function(data) {
-    //     console.log(data)
-    //     this.setState({
-    //       intro: data
-    //     })
-    //   }.bind(this),
 
-    // })
     axios.get(`http://localhost:3002/api/intro/${endPoint}`)
     .then((res) => {
       console.log(res.data)
       this.setState({
-        intro: res
+        intro: [ res.data ]
       })
     })
     .catch((err) => {

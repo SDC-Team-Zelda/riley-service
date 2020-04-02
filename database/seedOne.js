@@ -22,31 +22,32 @@ let getPhotos = function() {
 
       // console.log(response.data);
       let photos = [];
-      let photoGroup = [];
       let number = Math.ceil(Math.random() * 5);
-      response.data.results.map((result) => {
-        photoGroup.push(result.urls.regular)
+      for (var i = 0; i < number; i++ ) {
+        photos.push(response.data.results[i].urls.regular)
+      }
+      // response.data.results.map((result) => {
+      //   photoGroup.push(result.urls.regular)
 
-        if (photoGroup.length >= number) {
-          photos.push(photoGroup)
-          photoGroup = [];
-          number = Math.ceil(Math.random() * 10);
-        }
-      })
+      //   if (photoGroup.length >= number) {
+      //     photos.push(photoGroup)
+      //     photoGroup = [];
+      //     number = Math.ceil(Math.random() * 10);
+      //   }
+      // })
+      console.log(photos)
 
       return photos
     })
     .then((photos)=> {
       // console.log(JSON.stringify(photos, null, 2))
-      let listing = photos.map((photoGroup) => {
-        let listing = {
+      let listing = {
           title: faker.lorem.sentence(),
           description: faker.lorem.paragraph(),
-          photos: photoGroup
+          photos: photos
         }
-        return listing;
-      })
-      console.log(listing)
+
+      // console.log('listing: ', listing)
       return listing;
 
     })
@@ -55,7 +56,7 @@ let getPhotos = function() {
         if (err) {
           console.log(err);
         } else {
-          console.log('Success: Listing: ', result);
+          console.log('DB Success: Listing: ', result);
         }
       });
     })
