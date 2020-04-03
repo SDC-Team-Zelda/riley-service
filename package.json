@@ -18,7 +18,8 @@
     "react-dev": "webpack -d --watch",
     "seed": "node database/seedLocal.js",
     "test": "jest",
-    "seedOne": "node database/seedOne.js"
+    "seedOne": "node database/seedOne.js",
+    "getPhotos": "node database/getPhotos.js"
   },
   "dependencies": {
     "@babel/cli": "^7.8.4",
@@ -37,6 +38,7 @@
     "faker": "^4.1.0",
     "fetch": "^1.1.0",
     "file-system": "^2.2.2",
+    "image-downloader": "^3.5.0",
     "jest": "^25.1.0",
     "jest-css-modules": "^2.1.0",
     "jquery": "^3.4.1",
