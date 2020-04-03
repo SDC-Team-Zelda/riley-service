@@ -29,22 +29,24 @@ Promise.all(parsed)
   .then((all) => {
     let count = 1;
     let result = all.map((photoURL) => {
-      count++
-      var padded = count.toString().padStart(3, '0')
+
+      var padded = count.toString().padStart(4, '0')
       download.image({
         url: photoURL,
         dest: `database/data/photos/photo-${padded}.jpg`                // Save to /path/to/dest/image.jpg
         })
+        .then(({filename, image}) => {
+          console.log('Saved to', filename)  // Saved to /path/to/dest/image.jpg
+        })
       .catch((err) => {
         console.log(err)
       })
+      count++
     })
 
     return result
   })
-  .then((result) => {
-    console.log('Saved to', result)  // Saved to /path/to/dest/image.jpg
-  })
+
   .catch((err) => {
     console.log(err)
   })
