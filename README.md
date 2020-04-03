@@ -1,39 +1,33 @@
-# Project Name
+# riley-service
 
-> Project description
+## API
 
-## Related Projects
+1. [GET](#get)
+2. [POST](#post)
+3. [UPDATE](#update)
+4. [DELETE](#delete)
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+## GET
 
-## Table of Contents
+/api/intro/
 
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
+Makes request for one listing based on id parameter
 
-## Usage
+## POST
 
-> Some usage instructions
+/api/intro/
 
-## Requirements
+Creates a new listing
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
+## UPDATE
 
-- Node 6.13.0
-- etc
+/api/intro/
 
-## Development
+Updates a single listing based on id parameter
 
-### Installing Dependencies
+## DELETE
 
-From within the root directory:
+/api/intro/
 
-```sh
-npm install -g webpack
-npm install
-```
+Deletes a single listing based on id parameter
 

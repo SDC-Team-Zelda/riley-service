@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Introduction from './Introduction.jsx';
 import $ from 'jquery';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -9,25 +10,28 @@ class App extends React.Component {
     this.state = {
       intro: []
     }
-  }
-
-  getPhotosAndIntro () {
-    let endPoint = window.location.href.split('=')[1];
-    $.ajax({
-      method: 'GET',
-      url: `http://3.101.45.223:3002/api/intro/${endPoint}`,
-      success: function(data) {
-        this.setState({
-          intro: data
-        })
-      }.bind(this),
-
-    })
+    this.getPhotosAndIntro = this.getPhotosAndIntro.bind(this)
   }
 
   componentDidMount () {
     this.getPhotosAndIntro();
   }
+
+  getPhotosAndIntro () {
+    let endPoint = window.location.href.split('=')[1];
+
+    axios.get(`http://localhost:3002/api/intro/?id=${endPoint}`)
+    .then((res) => {
+      console.log(res.data)
+      this.setState({
+        intro: [ res.data ]
+      })
+    })
+    .catch((err) => {
+      console.log('GET error', err)
+    })
+  }
+
   render () {
     return (
       <div>
