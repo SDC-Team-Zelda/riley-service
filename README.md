@@ -9,29 +9,25 @@
 
 ## GET
 
-/api/intro/:id
+/api/intro/
 
-Makes request for initial application
+Makes request for one listing based on id parameter
 
 ## POST
 
-/api/
+/api/intro/
 
-Sends request to store new rental listing, using the following schema:
-listing_id: INTEGER (auto-generated)
-title: STRING,
-description: STRING,
-photos: ARRAY of photo urls
+Creates a new listing
 
 ## UPDATE
 
-/api/
+/api/intro/
 
-Updates a single listing based on listing_id
+Updates a single listing based on id parameter
 
 ## DELETE
 
-/api/
+/api/intro/
 
-Deletes a single listing based on listing_id
+Deletes a single listing based on id parameter
 
