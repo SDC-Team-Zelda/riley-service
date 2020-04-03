@@ -1,48 +1,50 @@
-const faker = require('faker');
 const fs = require('file-system');
-const axios = require('axios');
 const Promise = require('bluebird');
+const download = require('image-downloader')
 
-const { Listing } = require('./index.js');
-const ACCESS_KEY = require('./config/unsplash.config.js')
+const readFileAsync = Promise.promisify(fs.readFile);
 
+let parsed = readFileAsync('database/data/allPhotos.json', 'utf-8')
+  .then((result) => {
+    return JSON.parse(result)
 
-const writeFileAsync = Promise.promisify(fs.writeFile);
+  })
+  .catch((err) => {
+    console.log(err)
+  })
 
-(function() {
-  console.log('Running photo downloader script')
-  axios.get(`https://api.unsplash.com/search/photos/?client_id=${ACCESS_KEY.accessKey}`, {
-      params: {
-        query: 'modern home',
-        per_page: 1000,
+Promise.all(parsed)
+  .then((result) => {
+    let all = [];
+
+    for (var i = 0; i < result.length; i++) {
+      for (var j = 0; j < result[i].length; j++) {
+        all.push(result[i][j])
       }
+    }
+
+    return all;
+
+  })
+  .then((all) => {
+    let count = 1;
+    let result = all.map((photoURL) => {
+      count++
+      var padded = count.toString().padStart(3, '0')
+      download.image({
+        url: photoURL,
+        dest: `database/data/photos/photo-${padded}.jpg`                // Save to /path/to/dest/image.jpg
+        })
+      .catch((err) => {
+        console.log(err)
+      })
     })
-    .then((res) => {
 
-      // console.log(response.data);
-      let photos = [];
-      for (var i = 0; i < res.data.results.length; i++ ) {
-        photos.push(res.data.results[i].urls.regular)
-      }
-
-      console.log(photos)
-
-      return photos
-    })
-    .then((photos) => {
-      return JSON.stringify(photos)
-    })
-    .then(writeFileAsync('./data/1000photos.json', data))
-    .catch((err) => {
-      console.log(err)
-    })
-})()
-
-let result = getPhotos1000();
-console.log(result)
-
-module.exports.getPhotos = getPhotos;
-
-
-
-
+    return result
+  })
+  .then((result) => {
+    console.log('Saved to', result)  // Saved to /path/to/dest/image.jpg
+  })
+  .catch((err) => {
+    console.log(err)
+  })
