@@ -19,7 +19,8 @@
     "seed": "node database/seedLocal.js",
     "test": "jest",
     "seedOne": "node database/seedOne.js",
-    "getPhotos": "node database/getPhotos.js"
+    "getPhotos": "node database/getPhotos.js",
+    "10mil": "node database/dataGen.js"
   },
   "dependencies": {
     "@babel/cli": "^7.8.4",
