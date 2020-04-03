@@ -26,3 +26,4 @@ client/public/dist/bundle.js
 
 database/config/
 database/config/config.js
+database/data/
