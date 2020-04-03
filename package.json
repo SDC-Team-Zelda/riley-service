@@ -18,7 +18,8 @@
     "react-dev": "webpack -d --watch",
     "seed": "node database/seedLocal.js",
     "test": "jest",
-    "seedOne": "node database/seedOne.js"
+    "seedOne": "node database/seedOne.js",
+    "getPhotos": "node database/getPhotos.js"
   },
   "dependencies": {
     "@babel/cli": "^7.8.4",
