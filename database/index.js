@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/sdcbnb', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true
+  useCreateIndex: true,
+  useFindAndModify: false
 });
 
 const db = mongoose.connection;
@@ -43,13 +44,13 @@ let postListing = (object, callback) => {
 
 let putListing = (listingNumber, object, callback) => {
   Listing
-  .findByIdAndUpdate({listingNumber}, object)
+  .findByIdAndUpdate(listingNumber, object)
   .exec(callback)
 }
 
 let deleteListing = (listingNumber, callback) => {
   Listing
-    .findByIdAndDelete({listingNumber})
+    .findByIdAndDelete(listingNumber)
     .exec(callback)
 }
 

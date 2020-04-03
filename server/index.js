@@ -28,8 +28,8 @@ app.get('/app.js', cors(), function (req, res) {
 
 
 
-app.get('/api/intro/:id', function (req, res) {
-  var id = req.params.id;
+app.get('/api/intro/', function (req, res) {
+  var id = req.query.params.id
   console.log('GET id: ', id)
   getListing(id, function(err, result) {
     if (err) {
@@ -57,10 +57,12 @@ app.post('/api/intro/', (req, res) => {
   });
 })
 
-app.put('/api/intro/:id', cors(), (req, res) => {
-  console.log('PUT', res.body)
-  var id = req.params.id;
-  putListing(id, function(err, result) {
+app.put('/api/intro/', (req, res) => {
+  console.log('params: ', req.query)
+  var id = req.query.id
+  console.log('PUT id: ', id)
+  console.log(req.body)
+  putListing(id, req.body, function(err, result) {
     if (err) {
       console.log('Error: PUT')
       res.sendStatus(400)
@@ -70,9 +72,9 @@ app.put('/api/intro/:id', cors(), (req, res) => {
   });
 })
 
-app.delete('/api/intro/:id', cors(), (req, res) => {
-  console.log('DELETE', res.body)
-  var id = req.params.id;
+app.delete('/api/intro/', cors(), (req, res) => {
+  console.log('DELETE', req.query.id)
+  var id = req.query.id;
   deleteListing(id, function(err, result) {
     if (err) {
       console.log('Error: DELETE')
