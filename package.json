@@ -14,13 +14,15 @@
   "scripts": {
     "start": "webpack --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "server": "nodemon server/index.js",
+    "server-m": "nodemon server-MongoDB/index.js",
+    "server-pg": "nodemon server-Postgres/index.js",
+    "server-c": "nodemon server-Cassandra/index.js",
     "react-dev": "webpack -d --watch",
-    "seed": "node database/seedLocal.js",
+    "seed": "node database-MongoDB/seedLocal.js",
     "test": "jest",
-    "seedOne": "node database/seedOne.js",
-    "getPhotos": "node database/getPhotos.js",
-    "10mil": "node database/dataGen.js"
+    "seedOne": "node database-MongoDB/seedOne.js",
+    "getPhotos": "node database-MongoDB/getPhotos.js",
+    "10mil": "node database-MongoDB/dataGen.js"
   },
   "dependencies": {
     "@babel/cli": "^7.8.4",
@@ -51,6 +53,7 @@
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.2",
     "path": "^0.12.7",
+    "pg": "^8.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-styleable": "^3.3.2",
