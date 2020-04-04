@@ -1,16 +1,23 @@
 const faker = require('faker');
 const fs = require('fs');
+const perf = require('execution-time')();
 
-const writeUsers = fs.createWriteStream('./database/data/sdcbnb_listings.tsv');
+
+const writeUsers = fs.createWriteStream('./database/data/sdcbnb_listings2.tsv');
 writeUsers.write('id\ttitle\tdescription\tphotos\n', 'utf8');
 
 function writeTenMillionUsers(writer, encoding, callback) {
-  let i = 10000000;
+  perf.start();
+
+  let i = 15000000;
   let id = 0;
   function write() {
     let ok = true;
     do {
       i -= 1;
+      if (i % 100000 === 0) {
+        console.log(i / 100000, '%')
+      }
       id += 1;
 
       const title = faker.lorem.sentence();
@@ -38,6 +45,8 @@ function writeTenMillionUsers(writer, encoding, callback) {
     }
   }
 write()
+const results = perf.stop();
+console.log(results.time)
 }
 
 writeTenMillionUsers(writeUsers, 'utf-8', () => {
