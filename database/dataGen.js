@@ -3,32 +3,33 @@ const fs = require('fs');
 const perf = require('execution-time')();
 
 
-const writeUsers = fs.createWriteStream('./database/data/sdcbnb_listings2.tsv');
+const writeUsers = fs.createWriteStream('./database/data/sdcbnb_listings.tsv');
 writeUsers.write('id\ttitle\tdescription\tphotos\n', 'utf8');
 
 function writeTenMillionUsers(writer, encoding, callback) {
   perf.start();
 
-  let i = 15000000;
+  let i = 10000000;
   let id = 0;
   function write() {
     let ok = true;
     do {
       i -= 1;
-      if (i % 100000 === 0) {
-        console.log(i / 100000, '%')
-      }
       id += 1;
+
+      if (id % 500000 === 0) {
+        console.log(id / 500000, '%')
+      }
 
       const title = faker.lorem.sentence();
       const description = faker.lorem.paragraph();
       const photosArr = [];
-      const photosQuantity = Math.floor(Math.random() * 6)
-      for (var k = 0; k < photosQuantity.length; k++ ) {
+      const p = Math.floor(Math.random() * 5) + 1;
+      for (var k = 0; k < p; k++ ) {
         let padded = (Math.ceil(Math.random() * 1500)).toString().padStart(4, '0');
         photosArr.push(`https://sdc-jpgs.s3.us-east-2.amazonaws.com/photos/photo-${padded}.jpg`)
       }
-      const photos = photosArr;
+      const photos = JSON.stringify(photosArr)
       const data = `${id}\t${title}\t${description}\t${photos}\n`;
       if (i === 0) {
         writer.write(data, encoding, callback);
@@ -43,10 +44,11 @@ function writeTenMillionUsers(writer, encoding, callback) {
 // write some more once it drains
       writer.once('drain', write);
     }
+    const results = perf.stop();
+    console.log(results.time)
   }
 write()
-const results = perf.stop();
-console.log(results.time)
+
 }
 
 writeTenMillionUsers(writeUsers, 'utf-8', () => {
