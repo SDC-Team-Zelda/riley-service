@@ -4,7 +4,7 @@ mongoose.connect('mongodb://localhost/sdcbnb', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
-  useFindAndModify: falset pull
+  useFindAndModify: false
 });
 
 const db = mongoose.connection;
