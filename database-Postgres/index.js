@@ -1,4 +1,5 @@
-const { Pool } = require('pg')
+const { Pool } = require('pg');
+const regeneratorRuntime = require('regenerator-runtime')
 
 const pool = new Pool({
   host: 'localhost',
@@ -10,8 +11,9 @@ const pool = new Pool({
 
 let getListing = async function(id, callback) {
   try {
+    console.log('GET')
     const res = await pool.query(`SELECT * FROM listings WHERE id = ${id}`)
-    console.log(res.rows[0])
+    console.log('DONE')
     callback(null, res.rows[0])
   } catch(err) {
     console.log(err.stack)
@@ -21,12 +23,12 @@ let getListing = async function(id, callback) {
 
 let postListing = async function(object, callback) {
   try {
-    console.log('POST: ', object)
+    // console.log('POST: ', object)
     const text = 'INSERT INTO listings(title, description, photos) VALUES($1, $2, $3) RETURNING *';
     const values = Object.values(object)
 
     const res = await pool.query(text, values)
-    console.log(res.rows[0])
+    // console.log(res.rows[0])
     callback(null, res.rows[0])
   } catch(err) {
     console.log(err.stack)
@@ -47,7 +49,7 @@ let putListing = async function(id, object, callback) {
     const text = `UPDATE listings SET description = $1 WHERE id = ${id} RETURNING *`;
 
     const res = await pool.query(text, values)
-    console.log(res.rows[0])
+    // console.log(res.rows[0])
     callback(null, res.rows[0])
   } catch(err) {
     console.log(err.stack)
@@ -58,7 +60,7 @@ let putListing = async function(id, object, callback) {
 let deleteListing = async function(id, callback) {
   try {
     const res = await pool.query(`DELETE FROM listings WHERE id = ${id}`)
-    console.log(res.rows[0])
+    // console.log(res.rows[0])
     callback(null, res.rows[0])
   } catch(err) {
     console.log(err.stack)
