@@ -1,35 +1,27 @@
-const { Pool } = require('pg');
-const regeneratorRuntime = require('regenerator-runtime')
+const cassandra = require('cassandra-driver');
 
-const pool = new Pool({
-  host: 'localhost',
-  database: 'sdc',
-  max: 20,
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
-})
+const client = new cassandra.Client({
+  contactPoints: ['host1', 'host2'],
+  localDataCenter: 'datacenter1'
+});
 
-// exports.getListing = async function(id, callback) {
-//   try {
-//     // console.log('GET')
-//     const res = await pool.query(`SELECT * FROM listings WHERE id = ${id}`)
-//     // console.log('DONE')
-//     callback(null, res.rows[0])
-//   } catch(err) {
-//     console.log(err.stack)
-//     callback(err.stack, null)
-//   }
-// }
+client.connect(function (err) {
+  assert.ifError(err);
+});
 
-exports.getListing = function(id, callback) {
-    pool.query(`SELECT * FROM listings WHERE id = ${id}`, (err, res) => {
-      if (err) {
-        console.log(err)
-      } else {
-        callback(null, res.rows[0])
-      }
-    })
+
+exports.getListing = async function(id, callback) {
+  try {
+    // console.log('GET')
+    const res = await client.execute(`SELECT * FROM listings WHERE id = ${id}`)
+    // console.log('DONE')
+    callback(null, res.first())
+  } catch(err) {
+    console.log(err)
+    callback(err, null)
+  }
 }
+
 
 exports.postListing = async function(object, callback) {
   try {
