@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const {getListing, postListing, putListing, deleteListing} = require('../database-Postgres/index.js');
+const {getListing, postListing, putListing, deleteListing} = require('../database-Cassandra/index.js');
 const cors = require('cors');
 const morgan = require('morgan');
 
