@@ -50,6 +50,7 @@
     "minimist": "^1.2.5",
     "mongodb": "^3.5.5",
     "mongoose": "^5.9.7",
+    "morgan": "^1.10.0",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.2",
     "path": "^0.12.7",

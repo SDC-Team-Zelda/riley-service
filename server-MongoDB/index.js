@@ -3,16 +3,13 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const {getListing, postListing, putListing, deleteListing} = require('../database-MongoDB/index.js');
 const cors = require('cors');
+const morgan = require('morgan');
 
 let app = express();
 
 app.use(cors());
-
 app.use(express.static(path.join(__dirname, '../client/public/dist')));
-// app.get('/', cors(), function (req, res) {
-//   res.sendFile(path.join(__dirname, '../client/public/dist/index.html'))
-// });
-
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -25,7 +22,6 @@ app.use((req, res, next) => {
 app.get('/app.js', cors(), function (req, res) {
   res.sendFile(path.join(__dirname, '../client/public/dist/app.js'))
 });
-
 
 
 app.get('/api/intro/', function (req, res) {

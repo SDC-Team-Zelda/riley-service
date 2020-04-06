@@ -3,18 +3,16 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const {getListing, postListing, putListing, deleteListing} = require('../database-Postgres/index.js');
 const cors = require('cors');
+const morgan = require('morgan');
 
 let app = express();
 
 app.use(cors());
-
 app.use(express.static(path.join(__dirname, '../client/public/dist')));
-// app.get('/', cors(), function (req, res) {
-//   res.sendFile(path.join(__dirname, '../client/public/dist/index.html'))
-// });
-
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -27,16 +25,15 @@ app.get('/app.js', cors(), function (req, res) {
 });
 
 
-
 app.get('/api/intro/', function (req, res) {
   var id = req.query.id
-  console.log('GET id: ', id)
+  // console.log('GET id: ', id)
   getListing(id, function(err, result) {
     if (err) {
       console.log('Error: GET');
       res.sendStatus(400);
     } else {
-      console.log(result);
+      // console.log(result);
       res.send(result);
     }
   });
