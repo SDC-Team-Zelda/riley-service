@@ -24,9 +24,9 @@ coverage
 build/
 client/public/dist/bundle.js
 
-database-Mongodb/config/
-database-Mongodb/config/config.js
-database-Mongodb/data/
+database-MongoDB/config/
+database-MongoDB/config/config.js
+database-MongoDB/data/
 
 database-Postgres/config/
 database-Postgres/config/config.js
