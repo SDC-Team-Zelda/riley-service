@@ -31,3 +31,8 @@ database-Mongodb/data/
 database-Postgres/config/
 database-Postgres/config/config.js
 database-Postgres/data/
+
+database-Cassandra/config/
+database-Cassandra/config/config.js
+database-Cassandra/data/
+
