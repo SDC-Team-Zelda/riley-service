@@ -36,3 +36,5 @@ database-Cassandra/config/
 database-Cassandra/config/config.js
 database-Cassandra/data/
 
+database-MongoDB/data/sdcbnb_listings.tsv
+database-MongoDB/data/photos
