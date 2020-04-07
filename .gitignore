@@ -24,6 +24,16 @@ coverage
 build/
 client/public/dist/bundle.js
 
-database/config/
-database/config/config.js
-database/data/
+database-MongoDB/config/
+database-MongoDB/config/config.js
+database-MongoDB/data/
+database-MongoDB/data/photos/
+database-MongoDB/data/sdcbnb_listings.tsv
+
+database-Postgres/config/
+database-Postgres/config/config.js
+database-Postgres/data/
+
+database-Cassandra/config/
+database-Cassandra/config/config.js
+database-Cassandra/data/
