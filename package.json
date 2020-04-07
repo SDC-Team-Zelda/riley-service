@@ -20,9 +20,9 @@
     "react-dev": "webpack -d --watch",
     "seed": "node database-MongoDB/seedLocal.js",
     "test": "jest --runInBand --detectOpenHandles",
-    "seedOne": "node database-MongoDB/seedOne.js",
-    "getPhotos": "node database-MongoDB/getPhotos.js",
-    "10mil": "node database-MongoDB/dataGen.js"
+    "seedOne": "node dataGen/seedOne.js",
+    "getPhotos": "node dataGen/getPhotos.js",
+    "10mil": "node dataGen/dataGen.js"
   },
   "dependencies": {
     "@babel/cli": "^7.8.4",

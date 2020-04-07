@@ -1,6 +1,7 @@
 const faker = require('faker');
 const fs = require('fs');
 const perf = require('execution-time')();
+const uuid  = require('uuid');
 
 
 const writeUsers = fs.createWriteStream('./dataGen/data/list.tsv');
@@ -10,17 +11,18 @@ function writeTenMillionUsers(writer, encoding, callback) {
   perf.start();
 
   let i = 10000000;
-  let id = 0;
+  let j = 0;
   function write() {
     let ok = true;
     do {
       i -= 1;
-      id += 1;
+      j += 1;
 
-      if (id % 500000 === 0) {
-        console.log(id / 500000, '%')
+      if (500000 % j === 0) {
+        console.log((j / 10000000) * 100, '%')
       }
 
+      const id = uuid.v4();
       const title = faker.lorem.sentence();
       const description = faker.lorem.sentence() + ' ' + faker.lorem.sentence();
       const photosArr = [];
@@ -51,7 +53,15 @@ write()
 
 }
 
+
+
+
 writeTenMillionUsers(writeUsers, 'utf-8', () => {
-  console.log('DONE')
+  console.log('Finished data generation')
+  var stats = fs.statSync('./dataGen/data/list.tsv');
+  var fileSizeB = stats["size"];
+  var fileSizeMB = fileSizeB / 1000000.0
+
+  console.log('file size: ' + fileSizeMB + 'MB')
   writeUsers.end();
 });
