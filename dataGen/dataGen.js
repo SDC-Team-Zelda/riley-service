@@ -9,7 +9,7 @@ writeUsers.write('id\ttitle\tdescription\tphotos\n', 'utf8');
 function writeTenMillionUsers(writer, encoding, callback) {
   perf.start();
 
-  let i = 10;
+  let i = 10000000;
   let id = 0;
   function write() {
     let ok = true;
@@ -22,7 +22,7 @@ function writeTenMillionUsers(writer, encoding, callback) {
       }
 
       const title = faker.lorem.sentence();
-      const description = faker.lorem.sentence() + faker.lorem.sentence();
+      const description = faker.lorem.sentence() + ' ' + faker.lorem.sentence();
       const photosArr = [];
       const p = Math.floor(Math.random() * 5) + 1;
       for (var k = 0; k < p; k++ ) {
