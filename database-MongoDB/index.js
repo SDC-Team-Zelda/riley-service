@@ -1,20 +1,13 @@
 const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/sdcbnb', {
+mongoose.connect('mongodb://localhost/airbnblisting', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false
+  useCreateIndex: true
 });
 
-const db = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log('Connected to sdcbnb!')
-});
-
-let listingSchema = new mongoose.Schema({
+let listingSchema = mongoose.Schema({
+  listingNumber: { type: Number, unique: true, dropDuos: true},
   photos: Array,
   title: String,
   description: String
@@ -23,41 +16,10 @@ let listingSchema = new mongoose.Schema({
 let Listing = mongoose.model('Listing', listingSchema);
 
 let getListing = (listingNumber, callback) => {
-  let id = `ObjectId(${listingNumber})`
-  Listing
-    .findById(listingNumber)
-    .exec(callback)
-
+  Listing.
+    find({listingNumber}).
+    exec(callback)
 }
 
-let postListing = (object, callback) => {
-  Listing
-    .create(object)
-    .then((result) => {
-      console.log('POST Success')
-      callback()
-    })
-    .catch((err) => {
-      console.log('POST Error: ', err)
-    })
-}
-
-let putListing = (listingNumber, object, callback) => {
-  Listing
-  .findByIdAndUpdate(listingNumber, object)
-  .exec(callback)
-}
-
-let deleteListing = (listingNumber, callback) => {
-  Listing
-    .findByIdAndDelete(listingNumber)
-    .exec(callback)
-}
-
-module.exports = {
-  Listing: Listing,
-  getListing: getListing,
-  postListing: postListing,
-  putListing: putListing,
-  deleteListing: deleteListing
-};
+module.exports.getListing = getListing;
+module.exports.Listing = Listing;

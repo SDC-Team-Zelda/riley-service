@@ -11,7 +11,7 @@ var seed = function() {
   const s3Promises = [];
   for (var i = 1; i <= 100; i++) {
     let listing = {};
-    listing.listingNumber = i;
+    listing.listing_id = i;
     listing.title = faker.lorem.sentence();
     listing.description = faker.lorem.paragraph();
     listing.photos = [];

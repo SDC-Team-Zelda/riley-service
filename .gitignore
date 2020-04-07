@@ -37,3 +37,7 @@ database-Postgres/data/
 database-Cassandra/config/
 database-Cassandra/config/config.js
 database-Cassandra/data/
+
+dataGen/config/
+dataGen/config/unsplash.config.js
+dataGen/data/

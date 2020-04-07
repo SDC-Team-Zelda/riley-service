@@ -1,4 +1,5 @@
 const cassandra = require('cassandra-driver');
+const uuidv4  = require('uuid');
 
 const client = new cassandra.Client({
   contactPoints: ['127.0.0.1'],
@@ -6,9 +7,12 @@ const client = new cassandra.Client({
   keyspace: 'sdc'
 });
 
-// client.connect(function (err) {
-//   console.log(err);
-// });
+client.connect(function (err, res) {
+  if(err) {console.log(err); }
+  else {
+    console.log('Cassandra connected')
+  }
+});
 
 
 exports.getListing = async function(id, callback) {
@@ -26,16 +30,14 @@ exports.getListing = async function(id, callback) {
 
 exports.postListing = async function(object, callback) {
   try {
-    // console.log('POST: ', object)
-    const text = 'INSERT INTO listings(title, description, photos) VALUES($1, $2, $3) RETURNING *';
-    const values = Object.values(object)
-
-    const res = await pool.query(text, values)
-    // console.log(res.rows[0])
-    callback(null, res.rows[0])
+    // let photos = JSON.stringify(object.photos);
+    const id = 10000003;
+    let query = `INSERT INTO listings(id, title, description, photos) VALUES( ${id}, '${object.title}', '${object.description}', '${object.photos}' )`
+    const res = await client.execute(query)
+    callback(null, 'POST Success')
   } catch(err) {
-    console.log(err.stack)
-    callback(err.stack, null)
+    console.log(err)
+    callback(err, null)
   }
 }
 
