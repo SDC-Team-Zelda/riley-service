@@ -1,14 +1,14 @@
 const cassandra = require('cassandra-driver');
 
 const client = new cassandra.Client({
-  contactPoints: ['h1', 'h2'],
+  contactPoints: ['127.0.0.1'],
   localDataCenter: 'datacenter1',
-  keyspace: 'ks1'
+  keyspace: 'sdc'
 });
 
-client.connect(function (err) {
-  console.log(err);
-});
+// client.connect(function (err) {
+//   console.log(err);
+// });
 
 
 exports.getListing = async function(id, callback) {
@@ -16,7 +16,7 @@ exports.getListing = async function(id, callback) {
     // console.log('GET')
     const res = await client.execute(`SELECT * FROM listings WHERE id = ${id}`)
     // console.log('DONE')
-    callback(null, res.first())
+    callback(null, res.rows[0])
   } catch(err) {
     console.log(err)
     callback(err, null)

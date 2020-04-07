@@ -3,13 +3,13 @@ const fs = require('fs');
 const perf = require('execution-time')();
 
 
-const writeUsers = fs.createWriteStream('./database/data/sdcbnb_listings.tsv');
+const writeUsers = fs.createWriteStream('./database-MongoDB/data/sdcbnb_test.tsv');
 writeUsers.write('id\ttitle\tdescription\tphotos\n', 'utf8');
 
 function writeTenMillionUsers(writer, encoding, callback) {
   perf.start();
 
-  let i = 10000000;
+  let i = 10;
   let id = 0;
   function write() {
     let ok = true;
