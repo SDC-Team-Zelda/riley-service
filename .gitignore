@@ -38,4 +38,7 @@ database-Cassandra/config/
 database-Cassandra/config/config.js
 database-Cassandra/data/
 
+data/URLs/
+data/photos/
+
 newrelic.js
