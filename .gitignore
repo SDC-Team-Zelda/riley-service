@@ -28,7 +28,6 @@ database-MongoDB/config/
 database-MongoDB/config/config.js
 database-MongoDB/data/
 database-MongoDB/data/photos/
-database-MongoDB/data/URLs/
 database-MongoDB/data/sdcbnb_listings.tsv
 
 database-Postgres/config/
@@ -39,6 +38,13 @@ database-Cassandra/config/
 database-Cassandra/config/config.js
 database-Cassandra/data/
 
+<<<<<<< HEAD
+dataGen/data/URLs/
+dataGen/data/photos/
+
+newrelic.js
+
 dataGen/config/
 dataGen/config/unsplash.config.js
 dataGen/data/
+

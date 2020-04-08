@@ -1,20 +1,16 @@
 const faker = require('faker');
 const fs = require('fs');
 const perf = require('execution-time')();
-<<<<<<< HEAD
+
 const uuid  = require('uuid');
 
 
-const writeUsers = fs.createWriteStream('./dataGen/data/list_no_UUID.tsv');
-=======
-// const uuid  = require('uuid');
+const writeUsers = fs.createWriteStream('./dataGen/data/list_no_UUID.tsv')
 
+const uuid  = require('uuid');
 
-const writeUsers = fs.createWriteStream('./dataGen/data/list.tsv');
->>>>>>> master
 writeUsers.write('id\ttitle\tdescription\tphotos\n', 'utf8');  // write headers
 // writeUsers.write('uuid\ttitle\tdescription\tphotos\n', 'utf8');  // write headers
-
 
 function writeTenMillionUsers(writer, encoding, callback) {
   // perf.start();
@@ -41,15 +37,11 @@ function writeTenMillionUsers(writer, encoding, callback) {
         let padded = (Math.ceil(Math.random() * 1500)).toString().padStart(4, '0');
         photosArr.push(`/photo-${padded}.jpg`)
       }
-<<<<<<< HEAD
-      const photos = JSON.stringify(photosArr)
-      // const data = `${uniqueId}\t${title}\t${description}\t${photos}\n`;
-      const data = `${j}\t${title}\t${description}\t${photos}\n`;
-=======
+
       // const photos = JSON.stringify(photosArr)
       // const data = `${uniqueId}\t${title}\t${description}\t${photos}\n`;
       const data = `${j}\t${title}\t${description}\t${photosArr}\n`;
->>>>>>> master
+
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {
