@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const {getListing, postListing, putListing, deleteListing} = require('../database-Postgres/index.js');
+const {getListing, postListing, putListing, deleteListing} = require('../database-MongoDB/index.js');
 const cors = require('cors');
 const morgan = require('morgan');
 
@@ -12,7 +12,6 @@ app.use(express.static(path.join(__dirname, '../client/public/dist')));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -26,16 +25,15 @@ app.get('/app.js', cors(), function (req, res) {
 
 
 app.get('/api/intro/', function (req, res) {
-  var id = req.query.id
-  // console.log('GET id: ', id)
-
+  var id = req.query.params.id
+  console.log('GET id: ', id)
   getListing(id, function(err, result) {
     if (err) {
       console.log('Error: GET');
       res.sendStatus(400);
     } else {
-      console.timeEnd('test');
-      res.json(result);
+      console.log(result);
+      res.send(result);
     }
   });
 });
@@ -43,24 +41,29 @@ app.get('/api/intro/', function (req, res) {
 ////////
 
 app.post('/api/intro/', (req, res) => {
+  console.log(req.body)
   postListing(req.body, function(err, result) {
     if (err) {
       console.log('Error: POST')
       res.sendStatus(400)
     } else {
-      res.end()
+      res.sendStatus(201)
+      res.end
     }
   });
 })
 
 app.put('/api/intro/', (req, res) => {
+  console.log('params: ', req.query)
   var id = req.query.id
+  console.log('PUT id: ', id)
+  console.log(req.body)
   putListing(id, req.body, function(err, result) {
     if (err) {
       console.log('Error: PUT')
       res.sendStatus(400)
     } else {
-      res.end();
+      res.sendStatus(200)
     }
   });
 })
@@ -73,7 +76,7 @@ app.delete('/api/intro/', cors(), (req, res) => {
       console.log('Error: DELETE')
       res.sendStatus(204)
     } else {
-      res.end();
+      res.sendStatus(200)
     }
   });
 })

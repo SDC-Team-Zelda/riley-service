@@ -22,6 +22,7 @@ const pool = new Pool({
 // }
 
 exports.getListing = function(id, callback) {
+  console.time('test');
     pool.query(`SELECT * FROM listings WHERE id = ${id}`, (err, res) => {
       if (err) {
         console.log(err)
