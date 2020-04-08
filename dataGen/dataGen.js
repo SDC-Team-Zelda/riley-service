@@ -1,20 +1,14 @@
 const faker = require('faker');
 const fs = require('fs');
 const perf = require('execution-time')();
-<<<<<<< HEAD
+
 const uuid  = require('uuid');
 
 
 const writeUsers = fs.createWriteStream('./dataGen/data/list_no_UUID.tsv');
-=======
-// const uuid  = require('uuid');
 
-
-const writeUsers = fs.createWriteStream('./dataGen/data/list.tsv');
->>>>>>> master
 writeUsers.write('id\ttitle\tdescription\tphotos\n', 'utf8');  // write headers
 // writeUsers.write('uuid\ttitle\tdescription\tphotos\n', 'utf8');  // write headers
-
 
 function writeTenMillionUsers(writer, encoding, callback) {
   // perf.start();
