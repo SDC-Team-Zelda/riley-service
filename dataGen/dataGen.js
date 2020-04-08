@@ -4,25 +4,28 @@ const perf = require('execution-time')();
 const uuid  = require('uuid');
 
 
-const writeUsers = fs.createWriteStream('./dataGen/data/list.tsv');
-writeUsers.write('id\ttitle\tdescription\tphotos\n', 'utf8');
+const writeUsers = fs.createWriteStream('./dataGen/data/list_no_UUID.tsv');
+writeUsers.write('id\ttitle\tdescription\tphotos\n', 'utf8');  // write headers
+// writeUsers.write('uuid\ttitle\tdescription\tphotos\n', 'utf8');  // write headers
+
 
 function writeTenMillionUsers(writer, encoding, callback) {
-  perf.start();
+  // perf.start();
 
   let i = 10000000;
   let j = 0;
+  let onePercent = i / 100;
   function write() {
     let ok = true;
     do {
       i -= 1;
       j += 1;
 
-      if (500000 % j === 0) {
-        console.log((j / 10000000) * 100, '%')
+      if (j % onePercent === 0) {
+        console.log((j / onePercent), '%')
       }
 
-      const id = uuid.v4();
+      // const uniqueId = uuid.v4();
       const title = faker.lorem.sentence();
       const description = faker.lorem.sentence() + ' ' + faker.lorem.sentence();
       const photosArr = [];
@@ -32,7 +35,8 @@ function writeTenMillionUsers(writer, encoding, callback) {
         photosArr.push(`/photo-${padded}.jpg`)
       }
       const photos = JSON.stringify(photosArr)
-      const data = `${id}\t${title}\t${description}\t${photos}\n`;
+      // const data = `${uniqueId}\t${title}\t${description}\t${photos}\n`;
+      const data = `${j}\t${title}\t${description}\t${photos}\n`;
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {
@@ -46,8 +50,8 @@ function writeTenMillionUsers(writer, encoding, callback) {
 // write some more once it drains
       writer.once('drain', write);
     }
-    const results = perf.stop();
-    console.log(results.time)
+    // const results = perf.stop();
+    // console.log(results.time)
   }
 write()
 
@@ -62,6 +66,6 @@ writeTenMillionUsers(writeUsers, 'utf-8', () => {
   var fileSizeB = stats["size"];
   var fileSizeMB = fileSizeB / 1000000.0
 
-  console.log('file size: ' + fileSizeMB + 'MB')
+  console.log('file size: ' + Math.floor(fileSizeMB) + 'MB')
   writeUsers.end();
 });
