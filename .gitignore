@@ -37,3 +37,5 @@ database-Postgres/data/
 database-Cassandra/config/
 database-Cassandra/config/config.js
 database-Cassandra/data/
+
+newrelic.js
