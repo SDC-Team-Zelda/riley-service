@@ -1,6 +1,5 @@
 const faker = require('faker');
 const fs = require('fs');
-const perf = require('execution-time')();
 
 const fileName = 'list';
 
@@ -9,7 +8,7 @@ writeUsers.write('id\ttitle\tdescription\tphotos\n', 'utf8');  // write headers
 
 function writeTenMillionUsers(writer, encoding, callback) {
 
-  let i = 10;
+  let i = 10000000;
   let j = 0;
   let onePercent = i / 100;
   function write() {

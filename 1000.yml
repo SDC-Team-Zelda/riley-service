@@ -1,0 +1,17 @@
+config:
+  target: "http://localhost:3002"
+  phases:
+    - duration: 60
+      arrivalRate: 10
+  variables:
+      id:
+        - "1"
+        - "2500000"
+        - "5000000"
+        - "7500000"
+        - "10000000"
+scenarios:
+  - name: "GET listings"
+    flow:
+      - get:
+          url: "/api/intro/?id={{ id }}"

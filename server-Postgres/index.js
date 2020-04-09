@@ -1,9 +1,12 @@
+require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const {getListing, postListing, putListing, deleteListing} = require('../database-Postgres/index.js');
 const cors = require('cors');
 const morgan = require('morgan');
+
+
 
 let app = express();
 
