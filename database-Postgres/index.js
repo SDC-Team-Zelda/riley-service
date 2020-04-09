@@ -9,28 +9,27 @@ const pool = new Pool({
   connectionTimeoutMillis: 2000,
 })
 
-// exports.getListing = async function(id, callback) {
-//   try {
-//     // console.log('GET')
-//     const res = await pool.query(`SELECT * FROM listings WHERE id = ${id}`)
-//     // console.log('DONE')
-//     callback(null, res.rows[0])
-//   } catch(err) {
-//     console.log(err.stack)
-//     callback(err.stack, null)
-//   }
-// }
-
-exports.getListing = function(id, callback) {
-  console.time('test');
-    pool.query(`SELECT * FROM listings WHERE id = ${id}`, (err, res) => {
-      if (err) {
-        console.log(err)
-      } else {
-        callback(null, res.rows[0])
-      }
-    })
+exports.getListing = async function(id, callback) {
+  try {
+    // console.log('GET')
+    const res = await pool.query(`SELECT * FROM listings WHERE id = ${id}`)
+    // console.log('DONE')
+    callback(null, res.rows[0])
+  } catch(err) {
+    callback(err, null)
+  }
 }
+
+// exports.getListing = function(id, callback) {
+//   // console.time('test');
+//     pool.query(`SELECT * FROM listings WHERE id = ${id}`, (err, res) => {
+//       if (err) {
+//         console.log(err)
+//       } else {
+//         callback(null, res.rows[0])
+//       }
+//     })
+// }
 
 exports.postListing = async function(object, callback) {
   try {
