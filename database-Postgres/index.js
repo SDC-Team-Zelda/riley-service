@@ -1,5 +1,4 @@
 const { Pool } = require('pg');
-const regeneratorRuntime = require('regenerator-runtime')
 
 const pool = new Pool({
   host: 'localhost',

@@ -1,0 +1,17 @@
+config:
+  target: "http://localhost:3002"
+  processor: "./dataGen/stressSeeder.js"
+  phases:
+    - duration: 60
+      arrivalRate: 10
+scenarios:
+  - name: "POST listings"
+    flow:
+      - function: "fakeListing"
+      - post:
+          url: "/api/intro"
+          json:
+            title: "{{ title }}"
+            description: "{{ email }}"
+            photos: "{{ photos }}"
+
