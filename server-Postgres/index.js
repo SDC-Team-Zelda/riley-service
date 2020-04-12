@@ -34,7 +34,6 @@ app.get('/api/intro/', function (req, res) {
       console.log('Error: GET');
       res.sendStatus(400);
     } else {
-      console.timeEnd('test');
       res.json(result);
     }
   });
