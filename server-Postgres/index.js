@@ -1,9 +1,12 @@
+require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const {getListing, postListing, putListing, deleteListing} = require('../database-Postgres/index.js');
 const cors = require('cors');
 const morgan = require('morgan');
+
+
 
 let app = express();
 
@@ -27,14 +30,10 @@ app.get('/app.js', cors(), function (req, res) {
 
 app.get('/api/intro/', function (req, res) {
   var id = req.query.id
-  // console.log('GET id: ', id)
-
   getListing(id, function(err, result) {
     if (err) {
-      console.log('Error: GET');
       res.sendStatus(400);
     } else {
-      console.timeEnd('test');
       res.json(result);
     }
   });

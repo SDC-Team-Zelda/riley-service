@@ -4,7 +4,7 @@ var DIST_DIR = path.join(__dirname, 'client/public/dist');
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: `./client/src/components/Index.jsx`,
+  entry: `./client/src/Index.js`,
   output: {
     filename: 'app.js',
     path: DIST_DIR
