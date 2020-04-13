@@ -48,3 +48,4 @@ dataGen/config/
 dataGen/config/unsplash.config.js
 dataGen/data/
 
+docker-compose.yml
