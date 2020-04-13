@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+dataGen/config/
+dataGen/data/photos
+
+database-Cassandra
+database-MongoDB
+
+package-lock.json
