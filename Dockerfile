@@ -1,6 +1,6 @@
 FROM node:12.14
 
-WORKDIR /data
+WORKDIR /usr/src/app
 
 COPY package.json .
 
@@ -11,5 +11,5 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 80
+EXPOSE 3002
 CMD [ "npm", "start" ]
