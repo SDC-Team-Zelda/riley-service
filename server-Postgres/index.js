@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 
 
 app.get('/app.js', cors(), function (req, res) {
-  res.sendFile(path.join(__dirname, '../client/public/dist/app.js'))
+  res.sendFile(path.join(__dirname, './client/public/dist/app.js'))
 });
 
 

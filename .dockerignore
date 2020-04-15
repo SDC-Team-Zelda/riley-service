@@ -9,3 +9,8 @@ database-MongoDB
 package-lock.json
 
 docker-compose.yml
+
+server-Cassandra
+server-MongoDB
+
+dataGen
