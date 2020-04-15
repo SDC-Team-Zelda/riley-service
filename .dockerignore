@@ -7,3 +7,5 @@ database-Cassandra
 database-MongoDB
 
 package-lock.json
+
+docker-compose.yml
