@@ -1,6 +1,6 @@
 FROM node:12.14
 
-WORKDIR /usr/src/sdc
+WORKDIR /data
 
 COPY package.json .
 
@@ -12,4 +12,4 @@ RUN npm install
 COPY . .
 
 EXPOSE 80
-CMD [ "node", "server-Postgres/index.js" ]
+CMD [ "npm", "start" ]
