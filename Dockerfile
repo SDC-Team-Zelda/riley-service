@@ -1,6 +1,6 @@
 FROM node:12.14
 
-WORKDIR /usr/src/sdc
+WORKDIR /data
 
 COPY package.json .
 
