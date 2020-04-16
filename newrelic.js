@@ -9,7 +9,7 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name: ['Database Stress Test'],
+  app_name: ['Service Stress Test'],
   /**
    * Your New Relic license key.
    */

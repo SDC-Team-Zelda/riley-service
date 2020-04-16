@@ -83,11 +83,11 @@ class Introduction extends React.Component {
             <div className={style.gridContainer2}>
             <h2 className={style.title}>{oneInfo.title}</h2>
             <div className={style.gridContainer3}>
-              <i class="fas fa-home"></i>
+              <i className="fas fa-home"></i>
                 <p>Private room in house</p>
-              <i class="fas fa-spray-can"></i>
+              <i className="fas fa-spray-can"></i>
                 <p>Sparkling clean</p>
-              <i class="fas fa-map-marker-alt"></i>
+              <i className="fas fa-map-marker-alt"></i>
                 <p>Great location</p>
             </div>
             <div className={style.line}></div>
@@ -95,20 +95,20 @@ class Introduction extends React.Component {
             <div className={style.gridContainer4}>
               <div className={style.line}></div>
               <h4>Amenities</h4>
-              <i class="fas fa-wifi"></i>
+              <i className="fas fa-wifi"></i>
               <p>Wifi</p>
-              <i class="fas fa-parking"></i>
+              <i className="fas fa-parking"></i>
               <p>Free parking</p>
-              <i class="fas fa-swimming-pool"></i>
+              <i className="fas fa-swimming-pool"></i>
               <p>Pool</p>
-              <i class="fas fa-tv"></i>
+              <i className="fas fa-tv"></i>
               <p>Cable TV</p>
             </div>
             <div className={style.gridContainer5}>
             <div className={style.line}></div>
               <h4>Sleeping Arrangements</h4>
               <div className={style.gridContainer6}>
-              <i class="fas fa-bed"></i>
+              <i className="fas fa-bed"></i>
               <h5>Bedroom 1</h5>
               <p>2 single beds</p>
               </div>

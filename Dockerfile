@@ -1,15 +1,13 @@
-FROM node:12.14
+FROM node:12.14-alpine
 
 WORKDIR /usr/src/app
 
-COPY package.json .
+COPY package*.json ./
 
-RUN apt-get update && apt-get install -y curl
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
-RUN apt-get update && apt-get install -y nodejs
+RUN apk add --update nodejs nodejs-npm
 RUN npm install
 
 COPY . .
 
 EXPOSE 3002
-CMD [ "npm", "start" ]
+CMD npm start

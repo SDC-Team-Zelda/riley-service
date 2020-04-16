@@ -21,6 +21,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/loaderio-93cffc9f82bef84e057f9e4feb3d4980.txt', cors(), function (req, res) {
+  res.sendFile(path.join(__dirname, './client/public/dist/loaderio-93cffc9f82bef84e057f9e4feb3d4980.txt'))
+});
+
 
 app.get('/app.js', cors(), function (req, res) {
   res.sendFile(path.join(__dirname, './client/public/dist/app.js'))
