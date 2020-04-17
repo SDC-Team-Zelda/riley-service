@@ -1,6 +1,8 @@
 var path = require('path');
 var SRC_DIR = path.join(__dirname, '/client/src');
 var DIST_DIR = path.join(__dirname, 'client/public/dist');
+const TerserPlugin = require('terser-webpack-plugin');
+
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -34,5 +36,9 @@ module.exports = {
         ],
        }
     ]
-  }
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+  },
 };
