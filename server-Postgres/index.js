@@ -7,8 +7,9 @@ const cors = require('cors');
 const morgan = require('morgan');
 const React = require ('react');
 const ReactDOMServer = require ('react-dom/server');
-
 const App = require('../client/src/components/App.jsx');
+const compression = require('compression')
+
 let app = express();
 
 app.use(cors());
