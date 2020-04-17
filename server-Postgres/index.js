@@ -5,7 +5,7 @@ const path = require('path');
 const {getListing, postListing, putListing, deleteListing} = require('../database-Postgres/index.js');
 const cors = require('cors');
 const morgan = require('morgan');
-
+// const compression = require('compression')
 
 let app = express();
 
