@@ -5,8 +5,10 @@ const path = require('path');
 const {getListing, postListing, putListing, deleteListing} = require('../database-Postgres/index.js');
 const cors = require('cors');
 const morgan = require('morgan');
+const React = require ('react');
+const ReactDOMServer = require ('react-dom/server');
 
-
+const App = require('../client/src/components/App.jsx');
 let app = express();
 
 app.use(cors());
@@ -19,6 +21,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   next();
+});
+
+app.get('/*', (req, res) => {
+  const app = ReactDOMServer.renderToString(<App />);
+
+  const indexFile = path.resolve('../client/public/dist/index.html');
+  fs.readFile(indexFile, 'utf-8', (err, data) => {
+    if (err) {
+      console.error('readFile error', err);
+      return res.status(500).send('Something went wrong...')
+    }
+
+    return res.send(
+      data.replace('<div id="app"></div>', '<div id="app">${app}</div>')
+    );
+  });
 });
 
 app.get('/loaderio-93cffc9f82bef84e057f9e4feb3d4980.txt', cors(), function (req, res) {
@@ -82,7 +100,7 @@ app.delete('/api/intro/', cors(), (req, res) => {
 
 ////////
 
-let port = 3002;
+const port = process.env.PORT || 3002;
 app.listen(port, function() {
   console.log(`listening on port ${port}`);
 });
