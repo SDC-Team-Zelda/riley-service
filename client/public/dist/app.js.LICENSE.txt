@@ -1,57 +1,129 @@
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
+/*! exports provided: default, App */
 
-/*!
- * Sizzle CSS Selector Engine v2.3.4
- * https://sizzlejs.com/
- *
- * Copyright JS Foundation and other contributors
- * Released under the MIT license
- * https://js.foundation/
- *
- * Date: 2019-04-08
- */
+/*! exports provided: default, Introduction */
 
-/*!
- * jQuery JavaScript Library v3.4.1
- * https://jquery.com/
- *
- * Includes Sizzle.js
- * https://sizzlejs.com/
- *
- * Copyright JS Foundation and other contributors
- * Released under the MIT license
- * https://jquery.org/license
- *
- * Date: 2019-05-01T21:04Z
- */
+/*! exports provided: getListing, postListing, putListing, deleteListing */
 
-/** @license React v0.19.0
- * scheduler.production.min.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+/*! no exports provided */
 
-/** @license React v16.13.0
- * react-dom.production.min.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+/*! no static exports found */
 
-/** @license React v16.13.1
- * react.production.min.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+/*!*********************!*\
+    !*** external "pg" ***!
+    \*********************/
+
+/*!***********************!*\
+    !*** external "cors" ***!
+    \***********************/
+
+/*!***********************!*\
+    !*** external "path" ***!
+    \***********************/
+
+/*!************************!*\
+    !*** external "axios" ***!
+    \************************/
+
+/*!************************!*\
+    !*** external "react" ***!
+    \************************/
+
+/*!*************************!*\
+    !*** external "jquery" ***!
+    \*************************/
+
+/*!*************************!*\
+    !*** external "morgan" ***!
+    \*************************/
+
+/*!**************************!*\
+    !*** external "express" ***!
+    \**************************/
+
+/*!****************************!*\
+    !*** external "react-dom" ***!
+    \****************************/
+
+/*!******************************!*\
+    !*** external "body-parser" ***!
+    \******************************/
+
+/*!******************************!*\
+    !*** external "compression" ***!
+    \******************************/
+
+/*!******************************!*\
+    !*** external "file-system" ***!
+    \******************************/
+
+/*!********************************!*\
+    !*** external "object-assign" ***!
+    \********************************/
+
+/*!**********************************!*\
+    !*** ./server-Postgres/index.js ***!
+    \**********************************/
+
+/*!**********************************!*\
+    !*** external "react-styleable" ***!
+    \**********************************/
+
+/*!***********************************!*\
+    !*** external "react-dom/server" ***!
+    \***********************************/
+
+/*!************************************!*\
+    !*** ./database-Postgres/index.js ***!
+    \************************************/
+
+/*!*************************************!*\
+    !*** ./node_modules/React/index.js ***!
+    \*************************************/
+
+/*!***************************************!*\
+    !*** ./client/src/components/App.jsx ***!
+    \***************************************/
+
+/*!********************************************!*\
+    !*** external "prop-types/checkPropTypes" ***!
+    \********************************************/
+
+/*!*********************************************!*\
+    !*** external "@babel/runtime/regenerator" ***!
+    \*********************************************/
+
+/*!************************************************!*\
+    !*** ./client/src/components/Introduction.jsx ***!
+    \************************************************/
+
+/*!**************************************************!*\
+    !*** external "@babel/runtime/helpers/inherits" ***!
+    \**************************************************/
+
+/*!*****************************************************!*\
+    !*** ./node_modules/React/cjs/react.development.js ***!
+    \*****************************************************/
+
+/*!*****************************************************!*\
+    !*** external "@babel/runtime/helpers/createClass" ***!
+    \*****************************************************/
+
+/*!********************************************************!*\
+    !*** external "@babel/runtime/helpers/classCallCheck" ***!
+    \********************************************************/
+
+/*!********************************************************!*\
+    !*** external "@babel/runtime/helpers/getPrototypeOf" ***!
+    \********************************************************/
+
+/*!**********************************************************!*\
+    !*** external "@babel/runtime/helpers/asyncToGenerator" ***!
+    \**********************************************************/
+
+/*!***************************************************************!*\
+    !*** external "@babel/runtime/helpers/assertThisInitialized" ***!
+    \***************************************************************/
+
+/*!*******************************************************************!*\
+    !*** external "@babel/runtime/helpers/possibleConstructorReturn" ***!
+    \*******************************************************************/

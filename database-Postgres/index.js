@@ -29,7 +29,7 @@ pool.connect((err, client, release) => {
   })
 })
 
-exports.getListing = async function(id, callback) {
+const getListing = async function(id, callback) {
   try {
     // console.log('GET')
     const res = await pool.query(`SELECT * FROM listings WHERE id = ${id}`)
@@ -40,7 +40,7 @@ exports.getListing = async function(id, callback) {
   }
 }
 
-exports.postListing = async function(object, callback) {
+const postListing = async function(object, callback) {
   try {
     // console.log('POST: ', object)
     const text = 'INSERT INTO listings(title, description, photos) VALUES($1, $2, $3) RETURNING *';
@@ -55,7 +55,7 @@ exports.postListing = async function(object, callback) {
   }
 }
 
-exports.putListing = async function(id, object, callback) {
+const putListing = async function(id, object, callback) {
   try {
 
     let values = [];
@@ -76,7 +76,7 @@ exports.putListing = async function(id, object, callback) {
   }
 }
 
-exports.deleteListing = async function(id, callback) {
+const deleteListing = async function(id, callback) {
   try {
     const res = await pool.query(`DELETE FROM listings WHERE id = ${id}`)
     // console.log(res.rows[0])
@@ -87,9 +87,4 @@ exports.deleteListing = async function(id, callback) {
   }
 }
 
-// module.exports = {
-//   getListing: getListing,
-//   postListing: postListing,
-//   putListing: putListing,
-//   deleteListing: deleteListing
-// };
+export { getListing, postListing, putListing, deleteListing };

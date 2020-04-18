@@ -13,7 +13,7 @@ module.exports = {
     filename: 'app.js',
     path: DIST_DIR
   },
-  plugins: [new CompressionPlugin(), @babel/plugin-transform-runtime],
+  plugins: [new CompressionPlugin()],
   module : {
     rules : [
       {

@@ -1,7 +1,9 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
+  mode: 'production',
   entry: './server-Postgres/index.js',
 
   target: 'node',
@@ -9,16 +11,33 @@ module.exports = {
   externals: [nodeExternals()],
 
   output: {
-    path: path.resolve('server-build'),
+    path: path.resolve('client/src'),
     filename: 'index.js'
   },
-
+  plugins: [new CompressionPlugin()],
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: 'babel-loader'
-      }
+        test : /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader : 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+             loader: 'style-loader',
+          },
+          {
+             loader: 'css-loader',
+             options: {
+                modules: {
+                  localIdentName: '[local]___[hash:base64:5]'
+                }
+             }
+          }
+        ],
+       }
     ]
   }
 };

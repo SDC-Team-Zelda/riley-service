@@ -1,14 +1,15 @@
-require('newrelic');
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-const {getListing, postListing, putListing, deleteListing} = require('../database-Postgres/index.js');
-const cors = require('cors');
-const morgan = require('morgan');
-const React = require ('react');
-const ReactDOMServer = require ('react-dom/server');
-const App = require('../client/src/components/App.jsx');
-const compression = require('compression')
+import express from 'express';
+import bodyParser from 'body-parser';
+import path from 'path';
+import { getListing, postListing, putListing, deleteListing } from '../database-Postgres/index.js';
+import fs from 'file-system';
+import cors from 'cors';
+import morgan from 'morgan';
+import React from 'React';
+import ReactDOMServer from 'react-dom/server';
+
+import App from '../client/src/components/App.jsx';
+import compression from 'compression';
 
 let app = express();
 
@@ -25,9 +26,9 @@ app.use((req, res, next) => {
 });
 
 app.get('/*', (req, res) => {
-  const app = ReactDOMServer.renderToString(<App />);
+  const html = ReactDOMServer.renderToString(<App />);
 
-  const indexFile = path.resolve('../client/public/dist/index.html');
+  const indexFile = path.resolve('./client/public/dist/index.html');
   fs.readFile(indexFile, 'utf-8', (err, data) => {
     if (err) {
       console.error('readFile error', err);
@@ -35,7 +36,7 @@ app.get('/*', (req, res) => {
     }
 
     return res.send(
-      data.replace('<div id="app"></div>', '<div id="app">${app}</div>')
+      data.replace(/<div id="app"><\/div>/, '<div id="app">${html}</div>')
     );
   });
 });
