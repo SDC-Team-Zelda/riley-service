@@ -14,18 +14,13 @@ import compression from 'compression';
 let app = express();
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, '../client/public/dist')));
+app.use(express.static(path.join(__dirname + '/client/public/dist')));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
-
-app.get('/*', (req, res) => {
+app.get('/', (req, res) => {
   const html = ReactDOMServer.renderToString(<App />);
 
   const indexFile = path.resolve('./client/public/dist/index.html');
@@ -36,18 +31,18 @@ app.get('/*', (req, res) => {
     }
 
     return res.send(
-      data.replace(/<div id="app"><\/div>/, '<div id="app">${html}</div>')
+      data.replace(/<div id="caryn"><\/div>/, `<div id="caryn">${html}</div>`)
     );
   });
 });
 
 app.get('/loaderio-93cffc9f82bef84e057f9e4feb3d4980.txt', cors(), function (req, res) {
-  res.sendFile(path.join(__dirname, './client/public/dist/loaderio-93cffc9f82bef84e057f9e4feb3d4980.txt'))
+  res.sendFile(path.resolve('./client/public/dist/loaderio-93cffc9f82bef84e057f9e4feb3d4980.txt'))
 });
 
 
 app.get('/app.js', cors(), function (req, res) {
-  res.sendFile(path.join(__dirname, './client/public/dist/app.js'))
+  res.sendFile(path.resolve('./client/public/dist/app.js'))
 });
 
 

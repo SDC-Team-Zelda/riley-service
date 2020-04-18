@@ -5,13 +5,10 @@ const CompressionPlugin = require('compression-webpack-plugin');
 module.exports = {
   mode: 'production',
   entry: './server-Postgres/index.js',
-
   target: 'node',
-
   externals: [nodeExternals()],
-
   output: {
-    path: path.resolve('client/src'),
+    path: path.resolve('client/server'),
     filename: 'index.js'
   },
   plugins: [new CompressionPlugin()],
