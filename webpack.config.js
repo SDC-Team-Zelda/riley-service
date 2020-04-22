@@ -8,7 +8,7 @@ module.exports = {
   mode: 'production',
   entry: `./client/src/Index.js`,
   output: {
-    filename: 'Index.js',
+    filename: 'app.js',
     path: DIST_DIR
   },
   plugins: [new CompressionPlugin()],
