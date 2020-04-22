@@ -3,6 +3,7 @@ var SRC_DIR = path.join(__dirname, '/client/src');
 var DIST_DIR = path.join(__dirname, 'client/public/dist');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const BrotliPlugin = require('brotli-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -11,7 +12,10 @@ module.exports = {
     filename: 'app.js',
     path: DIST_DIR
   },
-  plugins: [new CompressionPlugin()],
+  plugins: [
+    new CompressionPlugin(),
+    new BrotliPlugin()
+   ],
   module : {
     rules : [
       {

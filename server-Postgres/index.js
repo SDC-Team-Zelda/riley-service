@@ -6,6 +6,8 @@ const {getListing, postListing, putListing, deleteListing} = require('../databas
 const cors = require('cors');
 const morgan = require('morgan');
 const compression = require('compression');
+const expressStaticGzip = require("express-static-gzip");
+
 
 let app = express();
 
@@ -15,6 +17,13 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use('/*', expressStaticGzip('../client/public/dist', {
+  enableBrotli: true,
+  orderPreference: ['br', 'gz'],
+  setHeaders: function (res, path) {
+     res.setHeader("Cache-Control", "public, max-age=31536000");
+  }
+}));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
