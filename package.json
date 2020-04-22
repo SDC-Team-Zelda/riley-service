@@ -22,10 +22,7 @@
     "test": "jest --runInBand --detectOpenHandles",
     "seedOne": "node dataGen/seedOne.js",
     "getPhotos": "node dataGen/getPhotos.js",
-    "10mil": "node dataGen/dataGen.js",
-    "dev:build-server": "NODE_ENV=development webpack --config webpack.server.js --mode=development -w",
-    "dev:start": "nodemon ./server-build/index.js",
-    "dev": "npm-run-all --parallel build dev:*"
+    "10mil": "node dataGen/dataGen.js"
   },
   "dependencies": {
     "@babel/cli": "^7.8.4",

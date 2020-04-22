@@ -5,10 +5,7 @@ const path = require('path');
 const {getListing, postListing, putListing, deleteListing} = require('../database-Postgres/index.js');
 const cors = require('cors');
 const morgan = require('morgan');
-const React = require ('react');
-const ReactDOMServer = require ('react-dom/server');
-const App = require('../client/src/components/App.jsx');
-const compression = require('compression')
+const compression = require('compression');
 
 let app = express();
 
@@ -24,29 +21,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/*', (req, res) => {
-  const app = ReactDOMServer.renderToString(<App />);
-
-  const indexFile = path.resolve('../client/public/dist/index.html');
-  fs.readFile(indexFile, 'utf-8', (err, data) => {
-    if (err) {
-      console.error('readFile error', err);
-      return res.status(500).send('Something went wrong...')
-    }
-
-    return res.send(
-      data.replace('<div id="app"></div>', '<div id="app">${app}</div>')
-    );
-  });
-});
-
-app.get('/loaderio-93cffc9f82bef84e057f9e4feb3d4980.txt', cors(), function (req, res) {
-  res.sendFile(path.join(__dirname, './client/public/dist/loaderio-93cffc9f82bef84e057f9e4feb3d4980.txt'))
-});
-
 
 app.get('/app.js', cors(), function (req, res) {
-  res.sendFile(path.join(__dirname, './client/public/dist/app.js'))
+  res.sendFile(path.join(__dirname, '../client/public/dist/app.js'))
 });
 
 
@@ -101,7 +78,7 @@ app.delete('/api/intro/', cors(), (req, res) => {
 
 ////////
 
-const port = process.env.PORT || 3002;
+let port = 3002;
 app.listen(port, function() {
   console.log(`listening on port ${port}`);
 });
