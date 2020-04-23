@@ -17,6 +17,9 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.get('/status', (req, res) => res.send({status: "I'm alive!"}));
+
+
 app.use('/*', expressStaticGzip('../client/public/dist', {
   enableBrotli: true,
   orderPreference: ['br', 'gz'],

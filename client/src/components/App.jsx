@@ -21,7 +21,7 @@ class App extends React.Component {
   getPhotosAndIntro () {
     let endPoint = window.location.href.split('=')[1];
     // axios.get(`http://18.222.28.53:3002/api/intro/?id=${endPoint}`)
-    axios.get(`http://18.216.120.91:3002/api/intro/?id=${endPoint}`)
+    axios.get(`/api/intro/?id=${endPoint}`)
     .then((res) => {
       console.log(res.data)
       this.setState({
