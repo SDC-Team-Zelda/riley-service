@@ -46,7 +46,7 @@
     "image-downloader": "^3.5.0",
     "jest": "^25.1.0",
     "jest-css-modules": "^2.1.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lodash": "^4.17.15",
     "minimist": "^1.2.5",
     "mongodb": "^3.5.5",
